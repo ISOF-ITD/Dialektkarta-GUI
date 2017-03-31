@@ -5,13 +5,18 @@ import MapMenu from './MapMenu';
 import MapView from './../../ISOF-React-modules/components/views/MapView';
 import PopupWindow from './../../ISOF-React-modules/components/views/PopupWindow';
 import LocalLibraryView from './../../ISOF-React-modules/components/views/LocalLibraryView';
+import GlobalAudioPlayer from './../../ISOF-React-modules/components/views/GlobalAudioPlayer';
 
 import routeHelper from './../utils/routeHelper';
 import WindowScroll from './../../ISOF-React-modules/utils/windowScroll';
 
+import EventBus from 'eventbusjs';
+
 export default class Application extends React.Component {
 	constructor(props) {
 		super(props);
+
+		window.eventBus = EventBus;
 
 		this.mapMarkerClick = this.mapMarkerClick.bind(this);
 		this.popupCloseHandler = this.popupCloseHandler.bind(this);
@@ -108,6 +113,8 @@ export default class Application extends React.Component {
 						searchGender={this.state.searchGender} />
 
 					<LocalLibraryView headerText="Mina inspelningar" />
+
+					<GlobalAudioPlayer />
 
 				</MapView>
 

@@ -60,8 +60,6 @@ export default class SearchMenu extends React.Component {
 					searchGender={this.state.searchGender}
 					onSizeChange={this.searchBoxSizeChangeHandler} />
 
-				<CategoryMenu selectedCategory={this.state.selectedCategory} />
-
 			</div>
 		);
 	}

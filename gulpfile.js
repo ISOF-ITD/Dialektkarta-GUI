@@ -98,6 +98,6 @@ function bundleApp(isProduction) {
 	    .on('error', gutil.log)
 	    .pipe(source('app.js'))
     	.pipe(buffer())
-//	    .pipe(uglify())
+	    .pipe(uglify())
 	    .pipe(gulp.dest('./www/js/'));
 }

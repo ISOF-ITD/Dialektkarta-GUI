@@ -18,6 +18,8 @@ export default class Application extends React.Component {
 
 		window.eventBus = EventBus;
 
+		window.eventBus.addEventListener('audio.playervisible', this.audioPlayerVisibleHandler.bind(this));
+
 		this.mapMarkerClick = this.mapMarkerClick.bind(this);
 		this.popupCloseHandler = this.popupCloseHandler.bind(this);
 		this.mapUpdateHandler = this.mapUpdateHandler.bind(this);
@@ -37,12 +39,21 @@ export default class Application extends React.Component {
 		window.app = this;
 	}
 
+	audioPlayerVisibleHandler() {
+		document.body.classList.add('has-docked-control');
+	}
+
 	mapMarkerClick(placeId) {
 		hashHistory.push(routeHelper.createPlacePathFromPlaces(placeId, this.props.location.pathname));
 	}
 
 	popupCloseHandler() {
-		hashHistory.push(routeHelper.createPlacesPathFromPlace(hashHistory.getCurrentLocation().pathname));
+		if (hashHistory.getCurrentLocation().pathname.indexOf('record/')) {
+			hashHistory.push(routeHelper.createPlacesPathFromRecord(hashHistory.getCurrentLocation().pathname));
+		}
+		else if (hashHistory.getCurrentLocation().pathname.indexOf('place/')) {
+			hashHistory.push(routeHelper.createPlacesPathFromPlace(hashHistory.getCurrentLocation().pathname));
+		}
 	}
 
 	mapUpdateHandler() {

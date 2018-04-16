@@ -1,10 +1,10 @@
 import RouteParser from 'route-parser';
 import { hashHistory } from 'react-router';
 
-const searchRoute = '(/search/:search)(/search_field/:search_field)(/type/:type)(/category/:category)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
-const placesRoute = '/places(/search/:search)(/search_field/:search_field)(/type/:type)(/category/:category)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
-const placeRoute = '/place/:place_id(/search/:search)(/search_field/:search_field)(/type/:type)(/category/:category)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
-const recordRoute = '/record/:record_id(/search/:search)(/search_field/:search_field)(/type/:type)(/category/:category)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
+const searchRoute = '(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
+const placesRoute = '/places(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
+const placeRoute = '/place/:place_id(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
+const recordRoute = '/record/:record_id(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
 
 export default {
 	createPlacePathFromPlaces(placeId, placesPath) {
@@ -14,7 +14,7 @@ export default {
 		routeParams.place_id = placeId;
 		router = new RouteParser(placeRoute);
 
-		return router.reverse(routeParams);
+		return router.reverse(routeParams) || '';
 	},
 
 	createPlacesPathFromPlace(placePath) {
@@ -28,7 +28,7 @@ export default {
 
 		router = new RouteParser(placesRoute);
 
-		return router.reverse(routeParams);
+		return router.reverse(routeParams) || '';
 	},
 
 	createPlacesPathFromRecord(recordId) {
@@ -42,12 +42,12 @@ export default {
 
 		router = new RouteParser(placesRoute);
 
-		return router.reverse(routeParams);
+		return router.reverse(routeParams) || '';
 	},
 
 	createSearchRoute(params) {
 		var router = new RouteParser(searchRoute);
 
-		return router.reverse(params);
+		return router.reverse(params) || '';
 	}
 }

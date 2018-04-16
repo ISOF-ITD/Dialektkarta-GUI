@@ -2,30 +2,38 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { hashHistory } from 'react-router';
 
-import DropdownMenu from './../../ISOF-React-modules/components/views/DropdownMenu';
+import DropdownMenu from './../../ISOF-React-modules/components/controls/DropdownMenu';
 import CategoryList from './CategoryList';
 
 export default class SearchBox extends React.Component {
 	constructor(props) {
 		super(props);
 
+		// Bind all event handlers to this (the actual component) to make component variables available inside the functions
 		this.inputKeyPressHandler = this.inputKeyPressHandler.bind(this);
-
 		this.searchValueChangeHandler = this.searchValueChangeHandler.bind(this);
 		this.searchFieldChangeHandler = this.searchFieldChangeHandler.bind(this);
 		this.searchPersonRelationChangeHandler = this.searchPersonRelationChangeHandler.bind(this);
 		this.searchGenderChangeHandler = this.searchGenderChangeHandler.bind(this);
+		this.searchCategoriesChangeHandler = this.searchCategoriesChangeHandler.bind(this);
 		this.searchButtonClickHandler = this.searchButtonClickHandler.bind(this);
 		this.executeSimpleSearch = this.executeSimpleSearch.bind(this);
-
 		this.searchBoxClickHandler = this.searchBoxClickHandler.bind(this);
 		this.toggleAdvanced = this.toggleAdvanced.bind(this);
+		this.languageChangedHandler = this.languageChangedHandler.bind(this);
+
+		// Lyssna efter event från eventBus som kommer om url:et ändras med nya sökparams
+		if (window.eventBus) {
+			window.eventBus.addEventListener('application.searchParams', this.receivedSearchParams.bind(this))
+		}
 
 		this.state = {
 			searchValue: '',
 			searchField: 'record',
+			includeNordic: false,
 			expanded: false,
 			advanced: false,
+			searchCategories: []
 		};
 
 		window.searchBox = this;
@@ -38,16 +46,24 @@ export default class SearchBox extends React.Component {
 	}
 
 	executeSimpleSearch() {
-		hashHistory.push('/places'+(this.state.searchValue != '' ? '/search/'+this.state.searchValue+'/search_field/'+this.state.searchField : ''));
+		if (this.props.onSearch) {
+			this.props.onSearch(this.state.searchValue);
+		}
 	}
 
 	searchButtonClickHandler() {
+		// Lägg mer komplicerad sökroute till url:et, kommer hanteras via router objected i app.js och skickas till MapView och RecordList
 		hashHistory.push(
 			'/places'+
 			(
 				this.state.searchValue != '' ?
 					'/search/'+this.state.searchValue+
 					'/search_field/'+this.state.searchField
+				: ''
+			)+
+			(
+				this.state.searchCategories.length > 0 ?
+					'/category/'+this.state.searchCategories.join(';')
 				: ''
 			)+
 			(
@@ -63,6 +79,7 @@ export default class SearchBox extends React.Component {
 		);
 	}
 
+	// Lägg nytt värde till state om valt värde ändras i sökfält, kategorilisten eller andra sökfält
 	searchValueChangeHandler(event) {
 		if (event.target.value != this.state.searchValue) {
 			this.setState({
@@ -82,7 +99,7 @@ export default class SearchBox extends React.Component {
 	searchPersonRelationChangeHandler(event) {
 		if (event.target.value != this.state.searchPersonRelation) {
 			this.setState({
-				searchPersonRelation: event.target.value == 'both' ? null : event.target.value
+				searchPersonRelation: event.target.value == 'both' ? '' : event.target.value
 			});
 		}
 	}
@@ -90,9 +107,15 @@ export default class SearchBox extends React.Component {
 	searchGenderChangeHandler(event) {
 		if (event.target.value != this.state.searchGender) {
 			this.setState({
-				searchGender: event.target.value == 'both' ? null : event.target.value
+				searchGender: event.target.value == 'both' ? '' : event.target.value
 			});
 		}
+	}
+
+	searchCategoriesChangeHandler(event) {
+		this.setState({
+			searchCategories: event
+		});
 	}
 
 	searchBoxClickHandler() {
@@ -120,17 +143,36 @@ export default class SearchBox extends React.Component {
 		}.bind(this));
 	}
 
+	receivedSearchParams(event) {
+		// Fick parametrar från eventBus, uppdaterar sökfält
+		this.setState({
+			searchValue: event.target.searchValue || '',
+			searchField: event.target.searchField || 'record',
+			searchYearFrom: event.target.searchYearFrom,
+			searchYearTo: event.target.searchYearTo,
+			searchPersonRelation: event.target.searchPersonRelation || '',
+			searchGender: event.target.searchGender || '',
+			includeNordic: event.target.includeNordic
+		});
+	}
+
+	languageChangedHandler() {
+		// Gränssnitt tvingas uppdateras om språk ändras
+		this.forceUpdate();
+	}
+
 	componentDidMount() {
 		document.getElementById('app').addEventListener('click', this.windowClickHandler.bind(this));
 
-		this.setState({
-			searchValue: this.props.searchValue || '',
-			searchField: this.props.searchField || 'record',
-			searchYearFrom: this.props.searchYearFrom,
-			searchYearTo: this.props.searchYearTo,
-			searchPersonRelation: this.props.searchPersonRelation || '',
-			searchGender: this.props.searchGender || ''
-		});
+		if (window.eventBus) {
+			window.eventBus.addEventListener('Lang.setCurrentLang', this.languageChangedHandler)
+		}
+	}
+
+	componentWillUnmount() {
+		if (window.eventBus) {
+			window.eventBus.removeEventListener('Lang.setCurrentLang', this.languageChangedHandler)
+		}
 	}
 
 	windowClickHandler(event) {
@@ -147,53 +189,19 @@ export default class SearchBox extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps(props) {
-		if (this.props.searchValue !== props.searchValue || 
-			this.props.searchField !== props.searchField || 
-			this.props.searchYearFrom !== props.searchYearFrom || 
-			this.props.searchYearTo !== props.searchYearTo || 
-			this.props.searchPersonRelation !== props.searchPersonRelation || 
-			this.props.searchGender !== props.searchGender
-		) {
-			var advandedSearch = props.searchYearFrom || props.searchYearTo || props.searchPersonRelation || props.searchGender;
-
-			this.setState({
-				searchValue: props.searchValue || '',
-				searchField: props.searchField || 'record',
-				searchYearFrom: props.searchYearFrom,
-				searchYearTo: props.searchYearTo,
-				searchPersonRelation: props.searchPersonRelation || '',
-				searchGender: props.searchGender || '',
-				expanded: advandedSearch,
-				advanced: advandedSearch
-			}, function() {
-				if (this.props.onSizeChange) {
-					this.props.onSizeChange(this.state)
-				}
-			}.bind(this));
-		}
-	}
-
 	render() {
 		return (
 			<div ref="container" 
 				onClick={this.searchBoxClickHandler} 
-				className={'search-box map-floating-control'+(this.state.expanded ? ' expanded' : '')+(this.state.advanced ? ' advanced' : '')}
-			>
+				className={'search-box map-floating-control'+(this.state.expanded ? ' expanded' : '')+(this.state.advanced ? ' advanced' : '')} >
 				<input ref="searchInput" type="text" 
 					value={this.state.searchValue} 
 					onChange={this.searchValueChangeHandler} 
-					onKeyPress={this.inputKeyPressHandler}
-				></input>
+					onKeyPress={this.inputKeyPressHandler} />
 				
 				<div className="search-label">
 					{
-						this.state.searchValue != '' ?
-						(
-							this.state.searchField == 'record' ? 'Innehåll: ' :
-							this.state.searchField == 'person' ? 'Person: ' :
-							this.state.searchField == 'place' ? 'Ort: ' : ''
-						) : 'Sök'
+						this.state.searchValue != '' ? 'Innehåll: ' : l('Sök')
 					}
 					<strong>
 						{
@@ -205,91 +213,6 @@ export default class SearchBox extends React.Component {
 
 				<button className="search-button" onClick={this.executeSimpleSearch}></button>
 
-				<div className="expanded-content">
-
-					<div className="radio-group">
-
-						<label>
-							<input type="radio" value="record" onChange={this.searchFieldChangeHandler} name="search-field" checked={this.state.searchField == 'record'} />
-							Innehåll
-						</label>
-
-						<label>
-							<input type="radio" value="person" onChange={this.searchFieldChangeHandler} name="search-field" checked={this.state.searchField == 'person'} />
-							Person
-						</label>
-
-						<label>
-							<input type="radio" value="place" onChange={this.searchFieldChangeHandler} name="search-field" checked={this.state.searchField == 'place'} />
-							Ort
-						</label>
-
-					</div>
-
-					<div>
-						<a onClick={this.toggleAdvanced}>Avancerad sökning</a>
-					</div>
-
-					<div className="advanced-content">
-
-						<hr/>
-
-						<h4>Kategorier</h4>
-						<DropdownMenu label="Avgränsa till kategorier">
-							<CategoryList multipleSelect="true" />
-						</DropdownMenu>
-
-						<hr/>
-
-						<h4>Roll</h4>
-						<div className="radio-group">
-						
-							<label>
-								<input type="radio" value="c" onChange={this.searchPersonRelationChangeHandler} name="search-person-relation" checked={this.state.searchPersonRelation == 'c'} />
-								Upptecknare
-							</label>
-
-							<label>
-								<input type="radio" value="i" onChange={this.searchPersonRelationChangeHandler} name="search-person-relation" checked={this.state.searchPersonRelation == 'i'} />
-								Meddelare
-							</label>
-
-							<label>
-								<input type="radio" value="both" onChange={this.searchPersonRelationChangeHandler} name="search-person-relation" checked={this.state.searchPersonRelation == ''} />
-								Båda
-							</label>
-
-						</div>
-
-						<hr/>
-
-						<h4>Kön</h4>
-						<div className="radio-group">
-						
-							<label>
-								<input type="radio" value="k" onChange={this.searchGenderChangeHandler} name="search-gender" checked={this.state.searchGender == 'k'} />
-								Kvinna
-							</label>
-
-							<label>
-								<input type="radio" value="m" onChange={this.searchGenderChangeHandler} name="search-gender" checked={this.state.searchGender == 'm'} />
-								Man
-							</label>
-
-							<label>
-								<input type="radio" value="both" onChange={this.searchGenderChangeHandler} name="search-gender" checked={this.state.searchGender == ''} />
-								Båda
-							</label>
-
-						</div>
-
-						<hr/>
-
-						<button className="button-primary" onClick={this.searchButtonClickHandler}>Sök</button>
-
-					</div>
-
-				</div>
 			</div>
 		);
 	}

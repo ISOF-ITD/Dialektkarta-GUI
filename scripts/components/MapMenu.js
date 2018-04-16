@@ -1,64 +1,63 @@
 import React from 'react';
+import { Router, hashHistory } from 'react-router';
 
-import CategoryMenu from './CategoryMenu';
 import SearchBox from './SearchBox';
+import DialektMenu from './DialektMenu';
 
 export default class SearchMenu extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.searchBoxSizeChangeHandler = this.searchBoxSizeChangeHandler.bind(this);
+		this.dialektMenuChangeHandler = this.dialektMenuChangeHandler.bind(this);
+		this.searchHandler = this.searchHandler.bind(this);
 
 		this.state = {
-			selectedCategory: null,
-			expanded: false,
-			advanced: false
+			expanded: false
 		};
-	}
-
-	componentDidMount() {
-		this.setState({
-			selectedCategory: this.props.selectedCategory,
-			searchValue: this.props.searchValue,
-			searchField: this.props.searchField,
-			searchYearFrom: this.props.searchYearFrom,
-			searchYearTo: this.props.searchYearTo,
-			searchPersonRelation: this.props.searchPersonRelation,
-			searchGender: this.props.searchGender
-		});
-	}
-
-	componentWillReceiveProps(props) {
-		this.setState({
-			selectedCategory: props.selectedCategory,
-			searchValue: props.searchValue,
-			searchField: props.searchField,
-			searchYearFrom: props.searchYearFrom,
-			searchYearTo: props.searchYearTo,
-			searchPersonRelation: props.searchPersonRelation,
-			searchGender: props.searchGender
-		});
 	}
 
 	searchBoxSizeChangeHandler(event) {
 		this.setState({
-			expanded: event.expanded,
-			advanced: event.advanced
+			expanded: event.expanded
 		});
 	}
 
+	dialektMenuChangeHandler(event) {
+		this.setState({
+			searchGender: event.gender,
+			birthYears: event.birthYears
+		}, function() {
+			this.updateRouter();
+		}.bind(this));
+	}
+
+	searchHandler(searchTerm) {
+		this.setState({
+			searchValue: searchTerm
+		}, function() {
+			this.updateRouter();
+		}.bind(this));
+	}
+
+	updateRouter() {
+		console.log('updateRouter');
+		console.log(this.state)
+		hashHistory.push('/places'+(this.state.searchValue && this.state.searchValue != '' ? '/search/'+this.state.searchValue : '')+
+			(this.state.searchGender && this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max ? '/person_relation/i' : '')+
+			(this.state.searchGender ? '/gender/'+this.state.searchGender : '')+
+			(this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max ? '/birth_years/'+this.state.birthYears.min+'-'+this.state.birthYears.max : '')
+		);
+	}
+	
 	render() {
 		return (
-			<div className={'menu-wrapper'+(this.state.expanded ? ' menu-expanded' : '')+(this.state.advanced ? ' advanced-menu-view' : '')}>
+			<div className={'menu-wrapper'+(this.state.expanded ? ' menu-expanded' : '')}>
 
-				<SearchBox ref="searchBox" 
-					searchValue={this.state.searchValue} 
-					searchField={this.state.searchField} 
-					searchYearFrom={this.state.searchYearFrom} 
-					searchYearTo={this.state.searchYearTo} 
-					searchPersonRelation={this.state.searchPersonRelation} 
-					searchGender={this.state.searchGender}
+				<SearchBox onSearch={this.searchHandler} 
 					onSizeChange={this.searchBoxSizeChangeHandler} />
+
+				<DialektMenu onChange={this.dialektMenuChangeHandler} />
 
 			</div>
 		);

@@ -2,7 +2,12 @@
 @import "../ISOF-React-modules/less/skeleton.less";
 @import "../ISOF-React-modules/less/leaflet.less";
 @import "../ISOF-React-modules/less/MarkerCluster.Default.less";
-@import "../ISOF-React-modules/less/nouislider.less";
+
+@import "../ISOF-React-modules/less/nouislider.min.less";
+@import "../ISOF-React-modules/less/minimal-scrollbar.less";
+@import "../ISOF-React-modules/less/tables.less";
+
+@import "../ISOF-React-modules/less/sitevision.less";
 
 @import "../ISOF-React-modules/less/ui-components/map.less";
 @import "../ISOF-React-modules/less/ui-components/map-ui.less";
@@ -13,16 +18,20 @@
 @import "../ISOF-React-modules/less/ui-components/local-library.less";
 @import "../ISOF-React-modules/less/ui-components/overlay.less";
 @import "../ISOF-React-modules/less/ui-components/audio-player.less";
-
-@import "../ISOF-React-modules/less/minimal-scrollbar.less";
-@import "../ISOF-React-modules/less/tables.less";
-
-@import "../ISOF-React-modules/less/sitevision.less";
+@import "../ISOF-React-modules/less/ui-components/element-notification-message.less";
+@import "../ISOF-React-modules/less/ui-components/popup-notification-message.less";
+@import "../ISOF-React-modules/less/ui-components/share-buttons.less";
+@import "../ISOF-React-modules/less/ui-components/image-map.less";
+@import "../ISOF-React-modules/less/ui-components/records-list.less";
+@import "../ISOF-React-modules/less/ui-components/slider.less";
 
 @color-red: #a6192e;
 @color-red-lighter: #d4454c;
 @color-red-divider: #b62837;
 @color-gray: #edeff1;
+@color-gray-border: #d1d1d1;
+@color-gray-background: #f5f5f5;
+@notification-background: #7d1b1f;
 
 @viewport {
 	zoom: 0.75;
@@ -33,7 +42,7 @@
 	display: none;
 }
 .sv-column-6 {
-    display: none !important;
+//    display: none !important;
 }
 
 html, body {
@@ -41,6 +50,10 @@ html, body {
 	width: 100vw;
 
 	overflow: hidden;
+
+	@media print {
+		overflow: visible;
+	}
 }
 
 body {
@@ -48,6 +61,14 @@ body {
 	margin: 0;
 
 	font-size: 1rem;
+}
+
+.text-small {
+	font-size: 0.9rem;
+}
+
+.text-smaller {
+	font-size: 0.7rem;
 }
 
 h2 {
@@ -61,6 +82,72 @@ h2 {
 	text-align: center;
 }
 
+.font-weight-normal {
+	font-weight: normal;
+}
+
+
+.popup-wrapper {
+	.popup-content-wrapper {
+		.page-content {
+			@media (min-width: 950px) {
+				top: 10px;
+				left: 10px;
+				right: 410px;
+
+				margin: 0 0 10px 0;
+			}
+		}
+	}
+}
+
+.menu-wrapper {
+	top: 20px;
+
+	@media (min-width: 950px) {
+//		top: 101px;
+		right: 35px;
+
+		z-index: 1700;
+	}
+
+	@media (min-width: 1650px) {
+		right: 50px;
+	}
+
+	.search-box {
+		top: 0;
+	}
+
+	.dialektkarta-menu {
+		top: 73px !important;
+
+		.list-container {
+			top: 0;
+
+			max-height: 250px;
+		}
+	}
+}
+
+.margin-top-0 { margin-top: 0 !important; }
+.margin-top-5 { margin-top: 5px !important; }
+.margin-top-10 { margin-top: 10px !important; }
+.margin-top-15 { margin-top: 15px !important; }
+.margin-top-20 { margin-top: 20px !important; }
+.margin-top-25 { margin-top: 25px !important; }
+.margin-top-30 { margin-top: 30px !important; }
+.margin-top-35 { margin-top: 35px !important; }
+
+.margin-bottom-0 { margin-bottom: 0 !important; }
+.margin-bottom-5 { margin-bottom: 5px !important; }
+.margin-bottom-10 { margin-bottom: 10px !important; }
+.margin-bottom-15 { margin-bottom: 15px !important; }
+.margin-bottom-20 { margin-bottom: 20px !important; }
+.margin-bottom-25 { margin-bottom: 25px !important; }
+.margin-bottom-30 { margin-bottom: 30px !important; }
+.margin-bottom-35 { margin-bottom: 35px !important; }
+
 .app-container {
 	position: absolute;
 	
@@ -73,8 +160,18 @@ h2 {
 
 	.transition(top 300ms ease-in-out);
 
+	@media (max-width: 550px) {
+		top: 39px;
+	}
+
 	&.has-overlay {
 		overflow: hidden;
+
+		@media print {
+			position: initial;
+
+			overflow: visible;
+		}
 	}
 
 	.has-docked-control & {
@@ -103,6 +200,10 @@ h2 {
 	
 	button {
 		margin-right: 10px;
+
+		@media print {
+			display: none;
+		}
 	}
 }
 
@@ -112,4 +213,78 @@ audio::-webkit-media-controls {
 audio::-webkit-media-controls-enclosure {
     width: calc(100% + 12px);
     margin-left: auto;
+}
+
+@media print {
+	a {
+		text-decoration: none !important;
+	}
+}
+
+.dialektkarta-menu {
+	position: absolute;
+
+	top: 82px;
+	right: 0;
+	left: 0;
+
+	z-index: 1500;
+
+	.menu-content {
+		background: @color-gray-background !important;
+
+		box-sizing: border-box;
+
+		overflow-x: hidden;
+
+		.menu-section {
+			padding: 15px;
+
+			&:not(:first-child) {
+				border-top: 1px solid @color-gray-border;
+			}
+
+			h4 {
+				margin: 0 0 10px;
+
+				color: @color-red;
+			}
+
+			.noUi-connect {
+				background-color: @color-red-lighter;
+			}
+
+			.radio-group {
+				label {
+					padding: 5px 7px;
+
+					margin: 0 5px 5px 0;
+
+					color: #fff;
+					font-weight: normal;
+					font-size: 0.9rem;
+
+					border-radius: 4px;
+
+					background: @color-red-lighter;
+
+					cursor: pointer;
+
+					&:hover {
+						background: @color-red;
+					}
+
+					&.selected {
+						background: @color-red;
+					}
+
+					input {
+						position: absolute;
+
+						opacity: 0;
+					}
+				}
+			}
+		}
+	}
 }

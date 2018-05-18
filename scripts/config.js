@@ -35,7 +35,10 @@ export default {
 			imagePosition: 'right',
 
 			// Placering av pdf filer ('under'|'right' (standard 'right'))
-			pdfIconsPosition: 'under'
+			pdfIconsPosition: 'under',
+
+			// Döljd materialtyp i RecordView, används för matkartan
+			hideMaterialType: true
 		},
 
 		// Namn på metadata labels, används i koppling med visible_metadata_fields
@@ -50,7 +53,9 @@ export default {
 		*/
 
 		// Inaktivera länker till personer, visa bara namnet
-		disablePersonLinks: false
+		disableInformantLinks: true,
+
+		feedbackText: 'Har du hittat några fel på Dialektkartan? Har du kompletterande information om eller fotografier på personerna som omnämns? Eller vill du hjälpa till med att skriva av inspelningarna? Kontakta oss gärna!'
 	},
 
 	// Vilket land vi hämtar data från
@@ -62,11 +67,11 @@ export default {
 	imageUrl: 'http://www4.sprakochfolkminnen.se/Folkminnen/Svenska_sagor_filer/',
 	audioUrl: 'http://www4.sprakochfolkminnen.se/Folkminnen/Svenska_sagor_filer/dialekter/',
 
-	appUrl: 'http://www4.sprakochfolkminnen.se/dialektkartan/',
+	appUrl: 'http://frigg.sprakochfolkminnen.se/static/js-apps/dialektkartan/',
 	siteUrl: 'http://www.sprakochfolkminnen.se/om-oss/kartor/sagenkartan.html',
 
 	// Url till Django/Elasticsearch API
-	apiUrl: 'http://frigg-test.sprakochfolkminnen.se/sagendatabas/api/es/',
+	apiUrl: 'http://frigg.sprakochfolkminnen.se/sagendatabas/api/es/',
 
 	// Url till Django Rest API
 	restApiUrl: 'http://frigg.sprakochfolkminnen.se/sagendatabas/api/'

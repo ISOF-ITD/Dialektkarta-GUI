@@ -73,8 +73,6 @@ export default class DialektMenu extends React.Component {
 	}
 
 	receivedSearchParams(event) {
-		console.log('receivedSearchParams');
-		console.log(event);
 /*
 		this.setState({
 			selectedCategory: event.target.selectedCategory,
@@ -85,7 +83,7 @@ export default class DialektMenu extends React.Component {
 
 	render() {
 		return (
-			<div ref="container" className={'dialektkarta-menu heading-list-wrapper'+(this.state.minimized ? ' minimized' : '')}>
+			<div ref="container" className={'dialektkarta-menu map-floating-control heading-list-wrapper'+(this.state.minimized ? ' minimized' : '')}>
 
 				<div className={'menu-content list-container minimal-scrollbar'}>
 					<div className="menu-section">

@@ -41,10 +41,8 @@ export default class SearchMenu extends React.Component {
 	}
 
 	updateRouter() {
-		console.log('updateRouter');
-		console.log(this.state)
 		hashHistory.push('/places'+(this.state.searchValue && this.state.searchValue != '' ? '/search/'+this.state.searchValue : '')+
-			(this.state.searchGender && this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max ? '/person_relation/i' : '')+
+			(this.state.searchGender || (this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max) ? '/person_relation/i' : '')+
 			(this.state.searchGender ? '/gender/'+this.state.searchGender : '')+
 			(this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max ? '/birth_years/'+this.state.birthYears.min+'-'+this.state.birthYears.max : '')
 		);

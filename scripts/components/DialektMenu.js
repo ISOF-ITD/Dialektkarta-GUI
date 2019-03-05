@@ -18,7 +18,7 @@ export default class DialektMenu extends React.Component {
 		}
 
 		this.sliderStartYear = 1850;
-		this.sliderEndYear = 1960;
+		this.sliderEndYear = 1980;
 
 		window.dialektMenu = this;
 

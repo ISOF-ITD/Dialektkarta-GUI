@@ -62,17 +62,17 @@ export default {
 	country: 'sweden',
 
 	// Webbsida som ska visas i OverlayWindow när användaren först kommer till kartan
-	startPageUrl: 'http://www.sprakochfolkminnen.se/om-oss/kartor/sagenkartan/om-sagenkartan---kort.html',
+	startPageUrl: 'https://www.sprakochfolkminnen.se/om-oss/kartor/sagenkartan/om-sagenkartan---kort.html',
 
-	imageUrl: 'http://www4.sprakochfolkminnen.se/Folkminnen/Svenska_sagor_filer/',
-	audioUrl: 'http://www4.sprakochfolkminnen.se/Folkminnen/Svenska_sagor_filer/dialekter/',
+	imageUrl: 'https://www4.sprakochfolkminnen.se/Folkminnen/Svenska_sagor_filer/',
+	audioUrl: 'https://www4.sprakochfolkminnen.se/Folkminnen/Svenska_sagor_filer/dialekter/',
 
-	appUrl: 'http://frigg.sprakochfolkminnen.se/static/js-apps/dialektkartan/',
-	siteUrl: 'http://www.sprakochfolkminnen.se/om-oss/kartor/sagenkartan.html',
+	appUrl: 'https://frigg.sprakochfolkminnen.se/static/js-apps/dialektkartan/',
+	siteUrl: 'https://www.sprakochfolkminnen.se/om-oss/kartor/sagenkartan.html',
 
 	// Url till Django/Elasticsearch API
-	apiUrl: 'http://frigg.sprakochfolkminnen.se/sagendatabas/api/es/',
+	apiUrl: 'https://frigg.sprakochfolkminnen.se/sagendatabas/api/es/',
 
 	// Url till Django Rest API
-	restApiUrl: 'http://frigg.sprakochfolkminnen.se/sagendatabas/api/'
+	restApiUrl: 'https://frigg.sprakochfolkminnen.se/sagendatabas/api/'
 };

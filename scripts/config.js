@@ -68,7 +68,7 @@ export default {
 	audioUrl: 'https://www4.isof.se/Folkminnen/Svenska_sagor_filer/dialekter/',
 
 	appUrl: 'https://frigg.isof.se/static/js-apps/dialektkartan/',
-	siteUrl: 'https://www.isof.se/om-oss/kartor/sagenkartan.html',
+	siteUrl: 'https://www.isof.se/om-oss/kartor/dialektkartan.html',
 
 	// Url till Django/Elasticsearch API
 	apiUrl: 'https://frigg.isof.se/sagendatabas/api/es/',

@@ -3,7 +3,7 @@ import { hashHistory } from 'react-router';
 
 const searchRoute = '(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
 const placesRoute = '/places(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
-const placeRoute = '/place/:place_id(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
+const placeRoute = '/places/:place_id(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
 const recordRoute = '/record/:record_id(/record_ids/:record_ids)(/search/:search)(/year_from/:year_from)(/year_to/:year_to)(/person_relation/:person_relation)(/gender/:gender)(/birth_years/:birth_years)(/person_landskap/:person_landskap)(/person_county/:person_county)(/person_harad/:person_harad)(/person_socken/:person_socken)';
 
 export default {

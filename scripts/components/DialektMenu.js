@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'underscore';
-import { hashHistory } from 'react-router';
+import { Router } from 'react-router-dom';
+//import { hashHistory } from 'react-router';
 import Slider from './../../ISOF-React-modules/components/controls/Slider';
 
 export default class DialektMenu extends React.Component {

@@ -55,7 +55,7 @@ export default {
 		// Inaktivera länker till personer, visa bara namnet
 		disableInformantLinks: true,
 
-		feedbackText: 'Har du hittat några fel på Dialektkartan? Har du kompletterande information om eller fotografier på personerna som omnämns? Eller vill du hjälpa till med att skriva av inspelningarna? Kontakta oss gärna!'
+		// feedbackText: 'Har du hittat några fel på Dialektkartan? Har du kompletterande information om eller fotografier på personerna som omnämns? Eller vill du hjälpa till med att skriva av inspelningarna? Kontakta oss gärna!'
 	},
 
 	// Vilket land vi hämtar data från

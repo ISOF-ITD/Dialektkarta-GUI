@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, hashHistory } from 'react-router';
+import { Router } from 'react-router-dom';
 
 import SearchBox from './SearchBox';
 import DialektMenu from './DialektMenu';
@@ -41,7 +41,7 @@ export default class SearchMenu extends React.Component {
 	}
 
 	updateRouter() {
-		hashHistory.push('/places'+(this.state.searchValue && this.state.searchValue != '' ? '/search/'+this.state.searchValue : '')+
+		this.props.history.push('/places'+(this.state.searchValue && this.state.searchValue != '' ? '/search/'+this.state.searchValue : '')+
 			(this.state.searchGender || (this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max) ? '/person_relation/i' : '')+
 			(this.state.searchGender ? '/gender/'+this.state.searchGender : '')+
 			(this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max ? '/birth_years/'+this.state.birthYears.min+'-'+this.state.birthYears.max : '')

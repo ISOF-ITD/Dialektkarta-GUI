@@ -66,20 +66,26 @@ ReactDOM.render(
 		</Route>
 		<Route 
 			path={[
-				"/places/text_ids/:text_ids",
+				//"/places/text_ids/:text_ids",
 
 				"/places/search/:search/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/birth_years?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/gender?/:gender?",
+				"/places/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
+				"/places/person_relation/:person_relation/birth_years?/:birth_years?",
+				"/places/person_relation/:person_relation/gender?/:gender?",
 				"/places/search/:search",
 				
 				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
 				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/birth_years?/:birth_years?",
 				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/gender?/:gender?",
 				"/places/:place_id([0-9]+)/search/:search",
+				//"/places/:place_id([0-9]+)/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
+				//"/places/:place_id([0-9]+)/person_relation/:person_relation/birth_years?/:birth_years?",
+				//"/places/:place_id([0-9]+)/person_relation/:person_relation/gender?/:gender?",
 				"/places/:place_id([0-9]+)",
 
-				"/places", // this has to be the last item in order to match the other routes, 
+				//"/places", // this has to be the last item in order to match the other routes, 
 				//"/places/(has_metadata)?/:has_metadata?", // this has to be the last item in order to match the other routes, 
 				// otherwise it will match longer paths as well
 

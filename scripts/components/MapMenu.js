@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom';
 import SearchBox from './SearchBox';
 import DialektMenu from './DialektMenu';
 
-export default class SearchMenu extends React.Component {
+export default class MapMenu extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -49,13 +49,16 @@ export default class SearchMenu extends React.Component {
 	}
 	
 	render() {
+		let _props = this.props
 		return (
 			<div className={'menu-wrapper'+(this.state.expanded ? ' menu-expanded' : '')}>
 
 				<SearchBox onSearch={this.searchHandler} 
-					onSizeChange={this.searchBoxSizeChangeHandler} />
+					onSizeChange={this.searchBoxSizeChangeHandler} 
+					{..._props}	
+				/>
 
-				<DialektMenu onChange={this.dialektMenuChangeHandler} />
+				<DialektMenu onChange={this.dialektMenuChangeHandler} {..._props} />
 
 			</div>
 		);

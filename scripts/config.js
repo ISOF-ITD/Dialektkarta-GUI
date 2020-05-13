@@ -38,7 +38,23 @@ export default {
 			pdfIconsPosition: 'under',
 
 			// Döljd materialtyp i RecordView, används för matkartan
-			hideMaterialType: true
+			hideMaterialType: true,
+
+		},
+		recordList: {
+			// Döljd materialtyp i RecordList, används för matkartan
+			hideMaterialType: true,
+
+			/*
+			// Dölj kategorier kolumn i RecordList, används för folkmusiken
+			hideCategories: true,
+			*/
+
+			// Dölj TranscriptionStatus kolumn i RecordList, används bara för crowdsource?
+			hideTranscriptionStatus: true,
+
+			// Vilka kategorier vi vill visa i listan, här vill vi bara visa matkarta kategorier men dölja frågolista-kategorier
+			//visibleCategories: ['sägner']
 		},
 
 		// Namn på metadata labels, används i koppling med visible_metadata_fields
@@ -54,8 +70,6 @@ export default {
 
 		// Inaktivera länker till personer, visa bara namnet
 		disableInformantLinks: true,
-
-		// feedbackText: 'Har du hittat några fel på Dialektkartan? Har du kompletterande information om eller fotografier på personerna som omnämns? Eller vill du hjälpa till med att skriva av inspelningarna? Kontakta oss gärna!'
 	},
 
 	// Vilket land vi hämtar data från

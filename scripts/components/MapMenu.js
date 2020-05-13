@@ -47,7 +47,23 @@ export default class MapMenu extends React.Component {
 			(this.state.birthYears && this.state.birthYears.min && this.state.birthYears.max ? '/birth_years/'+this.state.birthYears.min+'-'+this.state.birthYears.max : '')
 		);
 	}
-	
+
+	componentDidMount() {
+		this.setState({
+			searchValue: this.props.match.params.search || '',
+			searchGender: this.props.match.params.gender || '',
+			birthYears: this.props.match.params.birth_years || '',
+		});
+	}	
+
+	componentWillReceiveProps(props) {
+		this.setState({
+			searchValue: props.match.params.search || '',
+			searchGender: props.match.params.gender || '',
+			birthYears: props.match.params.birth_years || '',
+		});
+	}
+
 	render() {
 		let _props = this.props
 		return (

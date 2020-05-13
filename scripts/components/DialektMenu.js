@@ -82,6 +82,20 @@ export default class DialektMenu extends React.Component {
 */
 	}
 
+	componentDidMount() {
+		this.setState({
+			searchGender: this.props.match.params.gender || '',
+			birthYears: this.props.match.params.birth_years || '',
+		});
+	}	
+
+	componentWillReceiveProps(props) {
+		this.setState({
+			searchGender: props.match.params.gender || '',
+			birthYears: props.match.params.birth_years || '',
+		});
+	}
+
 	render() {
 		return (
 			<div ref="container" className={'dialektkarta-menu map-floating-control heading-list-wrapper'+(this.state.minimized ? ' minimized' : '')}>

@@ -76,13 +76,13 @@ ReactDOM.render(
 				"/places/person_relation/:person_relation/(gender)?/:gender?",
 				"/places/search/:search",
 				
-				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
-				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/birth_years?/:birth_years?",
-				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/gender?/:gender?",
+				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
+				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
+				"/places/:place_id([0-9]+)/search/:search/person_relation/:person_relation/(gender)?/:gender?",
 				"/places/:place_id([0-9]+)/search/:search",
-				//"/places/:place_id([0-9]+)/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
-				//"/places/:place_id([0-9]+)/person_relation/:person_relation/birth_years?/:birth_years?",
-				//"/places/:place_id([0-9]+)/person_relation/:person_relation/gender?/:gender?",
+				//"/places/:place_id([0-9]+)/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
+				//"/places/:place_id([0-9]+)/person_relation/:person_relation/(birth_years)?/:birth_years?",
+				//"/places/:place_id([0-9]+)/person_relation/:person_relation/(gender)?/:gender?",
 				"/places/:place_id([0-9]+)",
 
 				"/places", // this has to be the last item in order to match the other routes, 
@@ -106,9 +106,9 @@ ReactDOM.render(
 		/>
 		<Route 
 			path={[
-				"/records/:record_id/search/:search/person_relation/:person_relation/gender/:gender/birth_years?/:birth_years?",
-				"/records/:record_id/search/:search/person_relation/:person_relation/birth_years?/:birth_years?",
-				"/records/:record_id/search/:search/person_relation/:person_relation/gender?/:gender?",
+				"/records/:record_id/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
+				"/records/:record_id/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
+				"/records/:record_id/search/:search/person_relation/:person_relation/(gender)?/:gender?",
 				"/records/:record_id/search/:search?",
 				"/records/:record_id",
 
@@ -138,6 +138,7 @@ ReactDOM.render(
 			}
 		/>
 	</HashRouter>,
+
 	document.getElementById('app')
 
 

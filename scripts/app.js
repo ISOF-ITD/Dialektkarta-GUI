@@ -94,16 +94,16 @@ ReactDOM.render(
 
 
 			]}
-			render={(match) =>
+			render={(props) =>
 				<Application
 					popup={<RecordListWrapper 
-						{...match} 
+						{...props} 
 						manuallyOpenPopup={true}
 						//highlightRecordsWithMetadataField="sitevision_url" 
 						openButtonLabel="Visa sökträffar som lista"
 						disableRouterPagination={true}
 						/>}
-					{...match}	
+					{...props}	
 				/>
 			}
 		/>
@@ -112,13 +112,8 @@ ReactDOM.render(
 			path={[
 				"/person/:person_id",
 			]}
-			render={(match) =>
-				<Application
-					popup={<PersonView
-						{...match} 
-						fullWidthContentArea={true}
-						/>}
-					{...match}	
+			render={(props) =>
+				<Application {...props}	
 				/>
 			}
 		/>

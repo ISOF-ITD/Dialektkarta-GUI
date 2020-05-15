@@ -4,8 +4,6 @@ import { HashRouter, Route, Redirect } from 'react-router-dom'
 
 import Application from './components/Application';
 import RecordListWrapper from './../ISOF-React-modules/components/views/RecordListWrapper';
-import RecordView from './../ISOF-React-modules/components/views/RecordView';
-import PlaceView from './../ISOF-React-modules/components/views/PlaceView';
 import PersonView from './../ISOF-React-modules/components/views/PersonView';
 
 console.log('Dialektkartan running React.js version '+React.version);
@@ -88,6 +86,11 @@ ReactDOM.render(
 				"/places", // this has to be the last item in order to match the other routes, 
 				//"/places/(has_metadata)?/:has_metadata?", // this has to be the last item in order to match the other routes, 
 				// otherwise it will match longer paths as well
+				"/records/:record_id/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
+				"/records/:record_id/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
+				"/records/:record_id/search/:search/person_relation/:person_relation/(gender)?/:gender?",
+				"/records/:record_id/search/:search?",
+				"/records/:record_id",
 
 
 			]}
@@ -104,25 +107,7 @@ ReactDOM.render(
 				/>
 			}
 		/>
-		<Route 
-			path={[
-				"/records/:record_id/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
-				"/records/:record_id/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
-				"/records/:record_id/search/:search/person_relation/:person_relation/(gender)?/:gender?",
-				"/records/:record_id/search/:search?",
-				"/records/:record_id",
-
-			]}
-			render={(match) =>
-				<Application
-					popup={<RecordView
-						{...match} 
-						fullWidthContentArea={true}
-						/>}
-					{...match}	
-				/>
-			}
-		/>
+		
 		<Route 
 			path={[
 				"/person/:person_id",

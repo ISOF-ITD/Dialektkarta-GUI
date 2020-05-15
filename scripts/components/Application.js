@@ -5,6 +5,7 @@ import MapMenu from './MapMenu';
 import MapView from './../../ISOF-React-modules/components/views/MapView';
 import PlaceView from './../../ISOF-React-modules/components/views/PlaceView';
 import PersonView from './../../ISOF-React-modules/components/views/PersonView';
+import RecordView from './../../ISOF-React-modules/components/views/RecordView';
 import RoutePopupWindow from './../../ISOF-React-modules/components/controls/RoutePopupWindow';
 import LocalLibraryView from './../../ISOF-React-modules/components/views/LocalLibraryView';
 import ImageOverlay from './../../ISOF-React-modules/components/views/ImageOverlay';
@@ -208,8 +209,8 @@ export default class Application extends React.Component {
 	render() {
 		// Innehåll av RoutePopupWindow, kommer från application route i app.js
 		//var popup = this.props.popup;
-		const _props = this.props;
-		const match = this.props.match;
+		let props = this.props;
+		let match = this.props.match;
 
 		return (
 				<div className={'app-container'+(this.state.popupVisible ? ' has-overlay' : '')}>
@@ -225,7 +226,7 @@ export default class Application extends React.Component {
 									onHide={this.popupWindowHideHandler}
 									onClose={this.popupCloseHandler}
 									router={this.context.router}>
-										<PersonView {..._props} match={match}/>
+										<PersonView {...props} match={match}/>
 								</RoutePopupWindow>
 							}
 						/>
@@ -233,23 +234,25 @@ export default class Application extends React.Component {
 							path={[
 								"/places/:place_id([0-9]+)",
 							]}
-							render={(_props) =>
+							>
 								<RoutePopupWindow
 									onShow={this.popupWindowShowHandler}
 									onHide={this.popupWindowHideHandler}
 									onClose={this.popupCloseHandler}
 									router={this.context.router}>
-										<PlaceView {..._props} match={match}/>
+										<PlaceView 
+											// {...props}
+											match={match}
+										/>
 								</RoutePopupWindow>
-							}
-						/>
+						</Route>
 						<Route path = "/places" render={() =>
 							<RoutePopupWindow
 								onShow={this.popupWindowShowHandler}
 								onHide={this.popupWindowHideHandler}
 								onClose={this.popupCloseHandler}
 								router={this.context.router}>
-									{_props.popup}
+									{props.popup}
 							</RoutePopupWindow>
 						}/>
 						<Route path = "/records" render={() =>
@@ -258,7 +261,7 @@ export default class Application extends React.Component {
 								onHide={this.popupWindowHideHandler}
 								onClose={this.popupCloseHandler}
 								router={this.context.router}>
-									{_props.popup}
+									<RecordView {...props} />
 							</RoutePopupWindow>
 						}/>
 					</Switch>
@@ -275,11 +278,11 @@ export default class Application extends React.Component {
 							//searchMetadata={this.state.searchMetadata}
 							//selectedCategory={this.state.selectedCategory}
 							//selectedSubcategory={this.state.selectedSubcategory}
-							{..._props}
+							{...props}
 
 						/>
 
-						<LocalLibraryView headerText={l('Mina sägner')} {..._props} />
+						<LocalLibraryView headerText={l('Mina sägner')} />
 
 						<GlobalAudioPlayer />
 

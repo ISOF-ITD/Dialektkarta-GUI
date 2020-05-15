@@ -65,7 +65,7 @@ ReactDOM.render(
 		<Route 
 			path={[
 				//"/places/text_ids/:text_ids",
-
+				"/places/record_ids/:record_ids",
 				"/places/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/(gender)?/:gender?",

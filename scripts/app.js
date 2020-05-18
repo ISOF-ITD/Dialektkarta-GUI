@@ -62,10 +62,17 @@ ReactDOM.render(
 		<Route exact path="/">
 			<Redirect to="/places" />
 		</Route>
+		<Route exact path="/record/:record_id" render={({ match }) => (
+			<Redirect to={`/records/${match.params.record_id}`} />
+		)} />
+		<Route exact path="/place/:place_id([0-9]+)" render={({ match }) => (
+			<Redirect to={`/places/${match.params.place_id}`} />
+		)} />
 		<Route 
 			path={[
 				//"/places/text_ids/:text_ids",
 				"/places/record_ids/:record_ids",
+				"/places/:place_id([0-9]+)/record_ids/:record_ids",
 				"/places/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/(gender)?/:gender?",

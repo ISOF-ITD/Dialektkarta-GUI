@@ -56,7 +56,7 @@ export default class MapMenu extends React.Component {
 		});
 	}	
 
-	componentWillReceiveProps(props) {
+	UNSAFE_componentWillReceiveProps(props) {
 		this.setState({
 			searchValue: props.match.params.search || '',
 			searchGender: props.match.params.gender || '',

@@ -89,7 +89,7 @@ export default class DialektMenu extends React.Component {
 		});
 	}	
 
-	componentWillReceiveProps(props) {
+	UNSAFE_componentWillReceiveProps(props) {
 		this.setState({
 			searchGender: props.match.params.gender || '',
 			birthYears: props.match.params.birth_years || '',

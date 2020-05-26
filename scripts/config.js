@@ -45,10 +45,8 @@ export default {
 			// Döljd materialtyp i RecordList, används för matkartan
 			hideMaterialType: true,
 
-			/*
 			// Dölj kategorier kolumn i RecordList, används för folkmusiken
 			hideCategories: true,
-			*/
 
 			// Dölj TranscriptionStatus kolumn i RecordList, används bara för crowdsource?
 			hideTranscriptionStatus: true,

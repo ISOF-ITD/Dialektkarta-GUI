@@ -4,7 +4,6 @@ import { HashRouter, Route, Redirect } from 'react-router-dom'
 
 import Application from './components/Application';
 import RecordListWrapper from './../ISOF-React-modules/components/views/RecordListWrapper';
-import PersonView from './../ISOF-React-modules/components/views/PersonView';
 
 console.log('Dialektkartan running React.js version '+React.version);
 
@@ -71,7 +70,9 @@ ReactDOM.render(
 		<Route 
 			path={[
 				//"/places/text_ids/:text_ids",
+				// Saved records by user
 				"/places/record_ids/:record_ids",
+
 				"/places/:place_id([0-9]+)/record_ids/:record_ids",
 				"/places/search/:search/person_relation/:person_relation/gender/:gender/(birth_years)?/:birth_years?",
 				"/places/search/:search/person_relation/:person_relation/(birth_years)?/:birth_years?",
@@ -99,7 +100,7 @@ ReactDOM.render(
 				"/records/:record_id/search/:search?",
 				"/records/:record_id",
 
-
+				"/person/:person_id",
 			]}
 			render={(props) =>
 				<Application
@@ -115,15 +116,6 @@ ReactDOM.render(
 			}
 		/>
 		
-		<Route 
-			path={[
-				"/person/:person_id",
-			]}
-			render={(props) =>
-				<Application {...props}	
-				/>
-			}
-		/>
 	</HashRouter>,
 
 	document.getElementById('app')

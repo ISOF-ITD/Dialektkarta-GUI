@@ -210,6 +210,27 @@ export default class Application extends React.Component {
 		return (
 				<div className={'app-container'+(this.state.popupVisible ? ' has-overlay' : '')}>
 
+					<MapView
+						searchParams={this.props.match.params}
+						onMarkerClick={this.mapMarkerClick}
+						defaultMarkerIcon={this.defaultMarkerIcon}
+						hideMapmodeMenu={true}
+					>
+
+						<MapMenu
+							//searchMetadata={this.state.searchMetadata}
+							//selectedCategory={this.state.selectedCategory}
+							//selectedSubcategory={this.state.selectedSubcategory}
+							{...this.props}
+
+						/>
+
+						<LocalLibraryView headerText={l('Mina sägner')} history={this.props.history} />
+
+						<GlobalAudioPlayer />
+
+					</MapView>
+
 					<Switch>
 						<Route 
 							path={[
@@ -259,27 +280,6 @@ export default class Application extends React.Component {
 							</RoutePopupWindow>
 						}/>
 					</Switch>
-
-					<MapView
-						searchParams={this.props.match.params}
-						onMarkerClick={this.mapMarkerClick}
-						defaultMarkerIcon={this.defaultMarkerIcon}
-						hideMapmodeMenu={true}
-					>
-
-						<MapMenu
-							//searchMetadata={this.state.searchMetadata}
-							//selectedCategory={this.state.selectedCategory}
-							//selectedSubcategory={this.state.selectedSubcategory}
-							{...this.props}
-
-						/>
-
-						<LocalLibraryView headerText={l('Mina sägner')} history={this.props.history} />
-
-						<GlobalAudioPlayer />
-
-					</MapView>
 
 					<div className="map-progress"><div className="indicator"></div></div>
 

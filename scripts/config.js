@@ -9,13 +9,6 @@ export default {
 
 	// Speciella inställningar för projektet, används nu mest för Matkarta-GUI, siteOptions som property av config måste dock finnas
 	siteOptions: {
-		recordList: {
-			// Döljd materialtyp i RecordList, används för matkartan
-			hideMaterialType: true,
-			hideCategories: true,
-			displayPlayButton: true
-		},
-
 		recordView: {
 			// Vilka metadata fälts skulle visas i RecordView, används för folkmusiken
 			/*
@@ -42,8 +35,14 @@ export default {
 
 		},
 		recordList: {
+			// Visa playbutton i RecordList, används för ?
+			displayPlayButton: false,
+
 			// Döljd materialtyp i RecordList, används för matkartan
 			hideMaterialType: true,
+
+			// Döljd accession:page i RecordList, används för dialektkartan
+			hideAccessionpage: true,
 
 			// Dölj kategorier kolumn i RecordList, används för folkmusiken
 			hideCategories: true,

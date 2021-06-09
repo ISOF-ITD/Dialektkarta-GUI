@@ -28,9 +28,21 @@
 
 @import "../ISOF-React-modules/less/accessibility.less";
 
-//TODO: @color parameters in less files based basic less parameters named on either:
+// Two main style-files: Application-repo/less/style-basic.less VS common repo ISOF-React-modules/less/style.less
+// There is overlap and some same settings in both.
+// Regarding for example:
+// @less-parameters 
+// less-css-rules
+//
+// TODO: Rules and routines for what to put where? 
+
+// @color parameters in rules in less files based on basic less parameters named on either:
 // 1) color intensity perspective or 
 // 2) color function perspective
+
+// TODO: Strategy:
+// Use 1) "color intensity perspective" until change is needed
+// Change to 2) "color function perspective" when updating colors
 
 //isof profile colors until june 2021:
 @color-red: #a6192e;
@@ -43,7 +55,8 @@
 @color-gray-border: #d1d1d1;
 @color-gray-background: #f5f5f5;
 
-// Colors defined in color intensity perspective
+// 1. Colors defined in color intensity perspective
+//
 //isof profile colors from june 2021:
 //Used?:
 //@color-black: #000000;
@@ -61,16 +74,19 @@
 //Aktiv knapp + knapp-hover-over: 
 @color-darker-isof: #1c3f49;
 
-// Colors defined in color function perspective
+// 2. Colors defined in color function perspective
+//
 //Step 1: Defined less values for usage directly in rules from function perspective in adjusted rules (new from june 2021):
 //@color-background-lighter-isof: @color-lighter-isof;
 //@color-hover-active-button-isof: @color-lightest-isof;
-@color-hover-active-button-isof: @color-text-contrast-isof;
+@color-button-unselected: @color-text-contrast-isof;
+@color-button-selected: @color-darker-isof;
+@color-button-hover: @color-darker-isof;
 
 //Step 2: Handle less for rules using color-values directly not adjusted (yet?)
 //Map to new isof-profile colors:
 @color-red: @color-text-contrast-isof;
-@color-red-lighter: @color-lightest-isof;
+@color-red-lighter: @color-lighter-isof;
 @color-red-divider: @color-darker-isof;
 @notification-background: @color-darker-isof;
 
@@ -309,16 +325,16 @@ audio::-webkit-media-controls-enclosure {
 
 					border-radius: 4px;
 
-					background: @color-red-lighter;
+					background: @color-button-unselected;
 
 					cursor: pointer;
 
 					&:hover {
-						background: @color-red;
+						background: @color-button-hover;
 					}
 
 					&.selected {
-						background: @color-red;
+						background: @color-button-selected;
 					}
 
 					input {

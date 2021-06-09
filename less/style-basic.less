@@ -77,11 +77,10 @@
 // 2. Colors defined in color function perspective
 //
 //Step 1: Defined less values for usage directly in rules from function perspective in adjusted rules (new from june 2021):
-//@color-background-lighter-isof: @color-lighter-isof;
-//@color-hover-active-button-isof: @color-lightest-isof;
 @color-button-unselected: @color-text-contrast-isof;
-@color-button-selected: @color-darker-isof;
 @color-button-hover: @color-darker-isof;
+@color-button-selected: @color-darker-isof;
+@color-slider-selected-range: @color-darker-isof;
 
 //Step 2: Handle less for rules using color-values directly not adjusted (yet?)
 //Map to new isof-profile colors:
@@ -310,7 +309,7 @@ audio::-webkit-media-controls-enclosure {
 			}
 
 			.noUi-connect {
-				background-color: @color-red-lighter;
+				background-color: @color-slider-selected-range;
 			}
 
 			.radio-group {
@@ -339,8 +338,9 @@ audio::-webkit-media-controls-enclosure {
 
 					input {
 						position: absolute;
-
+					
 						opacity: 0;
+						visibility: hidden;
 					}
 				}
 			}

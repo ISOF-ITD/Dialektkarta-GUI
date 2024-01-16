@@ -78,13 +78,14 @@ export default {
 	imageUrl: 'https://www4.isof.se/Folkminnen/Svenska_sagor_filer/',
 	audioUrl: 'https://www4.isof.se/Folkminnen/Svenska_sagor_filer/dialekter/',
 
-	appUrl: 'https://frigg.isof.se/static/js-apps/dialektkartan/',
+	appUrl: 'https://dialektkartan.isof.se/',
+	//appUrl: 'https://frigg.isof.se/static/js-apps/dialektkartan/',
 	// For share links to users and MAYBE some image links (is last slash needed?):
 	siteUrl: 'https://www.isof.se/dialektkartan/',
 
 	// Url till Django/Elasticsearch API
-	apiUrl: 'https://frigg.isof.se/sagendatabas/api/es/',
+	apiUrl: 'https://garm.isof.se/folkeservice/api/es/',
 
 	// Url till Django Rest API
-	restApiUrl: 'https://frigg.isof.se/sagendatabas/api/'
+	restApiUrl: 'https://garm.isof.se/folkeservice/api/'
 };

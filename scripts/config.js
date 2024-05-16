@@ -4,7 +4,7 @@ export default {
 
 	// Parametrar som alltid skulle skickas till API:et, här passar vi på att sägenkartan alltid hämtar textar av typ arkiv eller tryckt och som finns i en kategori
 	requiredParams: {
-		type: 'inspelning',
+		type: 'dialektkartan',
 	},
 
 	// Speciella inställningar för projektet, används nu mest för Matkarta-GUI, siteOptions som property av config måste dock finnas

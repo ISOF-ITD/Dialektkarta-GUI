@@ -76,7 +76,7 @@ export default {
 	startPageUrl: 'https://www.isof.se/om-oss/kartor/sagenkartan/om-sagenkartan---kort.html',
 
 	imageUrl: 'https://www4.isof.se/Folkminnen/Svenska_sagor_filer/',
-	audioUrl: 'https://www4.isof.se/Folkminnen/Svenska_sagor_filer/dialekter/',
+	audioUrl: 'https://www4.isof.se/Folkminnen/Svenska_sagor_filer/dialektkartan/',
 
 	appUrl: 'https://dialektkartan.isof.se/',
 	//appUrl: 'https://frigg.isof.se/static/js-apps/dialektkartan/',

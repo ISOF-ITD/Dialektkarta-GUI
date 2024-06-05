@@ -15,10 +15,11 @@
         const is_test = ["-test."].some((element) => hostname.includes(element));
         const ENV = is_dev ? "dev" : is_test ? "test" : "prod";
         const WWW = is_dev ? "www" : is_test ? "" : "";
-    
+
+        // matomo filters out non prod urls so we can use same matomo id
         const matomo_site_ids = {
-            'dev': null,
-            'test': null,
+            'dev': 77,
+            'test': 77,
             'prod': 77,
         }
     

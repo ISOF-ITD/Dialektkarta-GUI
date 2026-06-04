@@ -84,8 +84,8 @@ export default {
 	siteUrl: 'https://www.isof.se/dialektkartan/',
 
 	// Url till Django/Elasticsearch API
-	apiUrl: 'https://garm.isof.se/folkeservice/api/es/',
+	apiUrl: 'https://ull.isof.se/folkeservice/api/es/',
 
 	// Url till Django Rest API
-	restApiUrl: 'https://garm.isof.se/folkeservice/api/'
+	restApiUrl: 'https://ull.isof.se/folkeservice/api/'
 };
